@@ -25,14 +25,16 @@
                     </div>
                     <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0 mt-1">
-                            <a href="#" class="text-xl font-bold">Brand</a>
+                            <RouterLink to="/" class="text-xl font-bold">Linje Store</RouterLink>
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex space-x-4">
-                                <RouterLink to="/" exactActiveClass="bg-gray-200"
+                                <RouterLink to="/" 
+                                    exactActiveClass="bg-gray-200"
                                     class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200">
                                     Home</RouterLink>
-                                <RouterLink to="Contact" exactActiveClass="bg-gray-200"
+                                <RouterLink to="Contact" 
+                                    exactActiveClass="bg-gray-200"
                                     class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200">
                                     Contact</RouterLink>
                             </div>

@@ -13,10 +13,6 @@ import { RouterView } from 'vue-router';
     <Navbar />
     <!-- /.end-navvar -->
 
-    <!-- Menu Section -->
-    <Category />
-    <!-- /.end-menu-section -->
-
     <!-- Main Content -->
     <RouterView />
     <!-- /.end-main-content -->

@@ -1,15 +1,22 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router'
 
-import ListFoods from '../pages/ListFoods.vue';
+// import ListFoods from '../pages/ListFoods.vue';
+import Home from '../pages/Home.vue';
 import Contact from '../pages/Contact.vue';
 
 const routes = [
-  { path: '/', component: Contact },
-  { path: '/contact', component: Contact },
+  { 
+    path: '/', 
+    name: "Home",
+    component: Home },
+  { 
+    path: '/contact', 
+    name: "Contact",
+    component: Contact },
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 })
 
