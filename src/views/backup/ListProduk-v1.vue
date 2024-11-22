@@ -10,13 +10,13 @@
 
             <!-- Tampilkan harga total -->
             <p class="card-text">
-              Harga Total: {{ formatPrice(product.plain_price) }}
+              Harga Total: {{ formatPrice(product.totalPrice) }}
             </p>
 
             <!-- Tampilkan harga jual (buyPrice) -->
-            <!-- <p class="card-text">
+            <p class="card-text">
               Harga Jual: {{ formatPrice(product.buyPrice) }}
-            </p> -->
+            </p>
 
             <!-- Tampilkan stok produk -->
             <p class="card-text">
@@ -47,13 +47,11 @@
     methods: {
       // Fungsi untuk format harga ke IDR (Rupiah)
       formatPrice(price) {
-        const numericPrice = parseFloat(price); // Pastikan price adalah angka
         return new Intl.NumberFormat("id-ID", {
           style: "currency",
           currency: "IDR",
-        }).format(numericPrice);
+        }).format(price);
       },
-
       // Fungsi untuk menambah produk ke keranjang
       addToCart(product) {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -67,12 +65,7 @@
       axios
         .get("https://sistemtoko.com/public/demo/product")
         .then((response) => {
-          // Periksa apakah price dan buyPrice dalam format angka
-          this.products = response.data.aaData.map(product => {
-            product.price = parseFloat(product.price);  // Mengubah price ke angka
-            product.buyPrice = parseFloat(product.buyPrice);  // Mengubah buyPrice ke angka
-            return product;
-          }) || [];
+          this.products = response.data.aaData || []; // Menyimpan data produk dalam array products
         })
         .catch((error) => console.error(error));
     },
