@@ -1,28 +1,36 @@
 <template>
-    <div class="container">
-      <h1>Keranjang Belanja</h1>
-      <div v-if="cart.length === 0">
-        <p>Keranjang kosong.</p>
-      </div>
-      <div v-else>
-        <ul class="list-group">
-          <li v-for="(item, index) in cart" :key="index" class="list-group-item">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5>{{ item.name }}</h5>
-                <p>Harga: {{ formatPrice(item.totalPrice) }}</p>
-              </div>
-              <button class="btn btn-danger btn-sm" @click="removeFromCart(index)">
-                Hapus
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
+  <div class="container">
+    <h1>Keranjang Belanja</h1>
+    <div v-if="cart.length === 0">
+      <span>Keranjang belanja Anda sudah kosong nih, yuk </span>
+
+      <!-- Tombol untuk navigasi ke halaman ListProduk -->
+      <router-link to="/list-produk">
+        <span>Belanja</span>
+      </router-link>
+
+      <span> lagi.</span>
+
     </div>
-  </template>
-  
-  <script>
+    <div v-else>
+      <ul class="list-group">
+        <li v-for="(item, index) in cart" :key="index" class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5>{{ item.name }}</h5>
+              <p>Harga: {{ formatPrice(item.plain_price) }}</p>
+            </div>
+            <button class="btn btn-danger btn-sm" @click="removeFromCart(index)">
+              Hapus
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
   export default {
     name: "Cart",
     data() {
@@ -46,12 +54,26 @@
       this.cart = JSON.parse(localStorage.getItem("cart")) || [];
     },
   };
-  </script>
-  
-  <style scoped>
+</script>
+
+<style scoped>
   h1 {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  </style>
-  
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>

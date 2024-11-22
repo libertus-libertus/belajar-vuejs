@@ -1,17 +1,17 @@
 <template>
   <div class="container">
-    <h1>List Produk</h1>
+    <h1 class="my-2">List Produk</h1>
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-md-3 mb-4">
         <div class="card">
           <img :src="product.photo" alt="Product Image" class="card-img-top" />
-          <div class="card-body text-center">
+          <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
 
             <!-- Tampilkan harga total -->
-            <p class="card-text">
+            <span class="card-text">
               Harga Total: {{ formatPrice(product.plain_price) }}
-            </p>
+            </span> <br>
 
             <!-- Tampilkan harga jual (buyPrice) -->
             <!-- <p class="card-text">
@@ -19,12 +19,13 @@
             </p> -->
 
             <!-- Tampilkan stok produk -->
-            <p class="card-text">
+            <span class="card-text">
               Stok: {{ product.stock }}
-            </p>
+            </span> <br>
 
             <!-- Tombol untuk menambahkan produk ke keranjang -->
-            <button class="btn btn-primary" @click="addToCart(product)">
+            <button class="btn btn-primary btn-sm mt-2 btn-block" @click="addToCart(product)">
+              <i class="bi bi-cart-plus"></i>
               Tambah ke Keranjang
             </button>
           </div>
@@ -69,8 +70,8 @@
         .then((response) => {
           // Periksa apakah price dan buyPrice dalam format angka
           this.products = response.data.aaData.map(product => {
-            product.price = parseFloat(product.price);  // Mengubah price ke angka
-            product.buyPrice = parseFloat(product.buyPrice);  // Mengubah buyPrice ke angka
+            product.price = parseFloat(product.price); // Mengubah price ke angka
+            product.buyPrice = parseFloat(product.buyPrice); // Mengubah buyPrice ke angka
             return product;
           }) || [];
         })
@@ -84,6 +85,7 @@
     height: 200px;
     object-fit: cover;
   }
+
   .card-title {
     text-transform: capitalize;
   }
